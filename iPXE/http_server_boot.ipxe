@@ -28,3 +28,9 @@ item --menu os_selection centos/CentOS CentOS
 item --menu os_selection none Ubuntu [currently not available]
 choose --menu os_selection os_choice && goto os_verfication
 
+:os_menu_dogmatix
+menu --name os_selection Select the OS for iPXE boot from Dogmatix server
+item --menu os_selection pub/ipxe/CentOS CentOS
+item --menu os_selection none Ubuntu [currently not available]
+choose --menu os_selection os_choice && goto os_verfication
+
