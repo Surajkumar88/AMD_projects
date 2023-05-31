@@ -13,3 +13,18 @@ echo Press 3 To exit to iPXE command line
 read server_choice
 goto server_${server_choice}
 
+:server_1
+# Setting source to Local HTTP server
+set server_ip http://10.19.1.65:8080/ && goto os_menu_http
+:server_2
+# Setting source to Dogmatix server
+set server_ip http://10.216.149.45/ && goto os_menu_dogmatix
+:server_3
+shell
+
+:os_menu_http
+menu --name os_selection Select the OS for iPXE boot from Local HTTP server
+item --menu os_selection centos/CentOS CentOS
+item --menu os_selection none Ubuntu [currently not available]
+choose --menu os_selection os_choice && goto os_verfication
+
