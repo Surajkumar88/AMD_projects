@@ -34,3 +34,25 @@ item --menu os_selection pub/ipxe/CentOS CentOS
 item --menu os_selection none Ubuntu [currently not available]
 choose --menu os_selection os_choice && goto os_verfication
 
+:os_verfication
+iseq ${os_choice} none && echo Select a valid/available OS for installation || goto installation
+goto server_menu
+
+:installation
+echo Establishing link to Kernel ... && sleep 3
+kernel ${server_ip}${os_choice}/vmlinuz initrd=initrd.img inst.repo=${server_ip}${os_choice}/image ip=dhcp
+echo Kernel OK
+echo Establishing link to initrd image ... && sleep 3
+echo initrd OK
+initrd ${server_ip}${os_choice}/initrd.img
+boot
+
+
+#Below is the old path to local HTTP server
+#kernel http://10.19.1.65:8080/centos/CentOS/vmlinuz initrd=initrd.img inst.repo=http://10.19.1.65:8080/centos/CentOS/image ip=dhcp
+#initrd http://10.19.1.65:8080/centos/CentOS/initrd.img
+
+#Below is the path to Dogmatix os
+#http://dogmatix.amd.com/pub/ipxe/CentOS/image/
+#http://dogmatix.amd.com/pub/ipxe/CentOS/initrd.img
+#http://dogmatix.amd.com/pub/ipxe/CentOS/vmlinuz
