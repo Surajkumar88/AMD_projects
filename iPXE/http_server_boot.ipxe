@@ -1,0 +1,15 @@
+#!ipxe
+:dhcp_retry
+dhcp || goto dhcp_retry
+
+prompt --key 0x02 --timeout 10000 Press Ctrl+B for the iPXE command line... && shell ||
+
+echo Acquired IP is ${net0/ip} && sleep 1
+
+:server_menu
+echo Press 1 for local HTTP server
+echo Press 2 Dogmatix server
+echo Press 3 To exit to iPXE command line
+read server_choice
+goto server_${server_choice}
+
