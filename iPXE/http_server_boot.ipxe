@@ -43,8 +43,9 @@ echo Establishing link to Kernel ... && sleep 3
 kernel ${server_ip}${os_choice}/vmlinuz initrd=initrd.img inst.repo=${server_ip}${os_choice}/image ip=dhcp
 echo Kernel OK
 echo Establishing link to initrd image ... && sleep 3
-echo initrd OK
 initrd ${server_ip}${os_choice}/initrd.img
+echo initrd OK
+sleep 2
 boot
 
 
